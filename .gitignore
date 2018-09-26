@@ -1,3 +1,6 @@
 #Ignore project files
 .idea/*
 .iml*
+*.iml
+*.class
+*.ods#

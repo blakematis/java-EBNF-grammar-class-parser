@@ -61,7 +61,6 @@ public class JClassParser {
     static int index = 0;
     static int errorflag = 0;
 
-
     public static void main(String[] args) throws IOException{
 	    JClassParser rec = new JClassParser();
         Scanner input = new Scanner(System.in);
@@ -107,25 +106,83 @@ public class JClassParser {
         }
     }
 
+    /**
+     * Java Class
+     */
     private void jClass(){
         className();
         match('B');
-        varlist();
+        varList();
         while(token() == 'P'){
-            //method();
+            method();
         }
         match('E');
     }
 
+    /**
+     * Class Name
+     */
     private void className(){
-        //TODO
+        if(token() == 'C') {
+            match('C');
+        }else {
+            match('D');
+        }
     }
 
-    private void varlist(){
-        //TODO
+    /**
+     * Variable List
+     */
+    private void varList(){
+        vardef();
+        while(token() == ','){
+            match(',');
+            vardef();
+        }
+        match(';');
     }
 
+    /**
+     * Class Method
+     */
     private void method(){
+        match('P');
+        type();
+        mname();
+        match('(');
+        vardef();
+        while(token() == ','){
+            //match
+        }
+        match(')');
+    }
+
+    /**
+     * Varible Declaration
+     */
+    private void vardef(){
+        type();
+        var();
+    }
+
+    /**
+     * Type
+     */
+    private void type(){
+        //TODO
+    }
+
+    /**
+     * Variable Names
+     */
+    private void var(){
+        //TODO
+    }
+
+    /**
+     * Method Name
+     */
+    private void mname(){
         //TODO
     }
 }
